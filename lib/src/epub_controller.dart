@@ -102,6 +102,25 @@ class EpubController {
         source: 'addHighlight("$cfi", "$colorHex", "$opacityString")');
   }
 
+  ///Adds a note to epub viewer
+  addNote({
+    ///Cfi string of the desired location
+    required String cfi,
+
+    ///Color of the highlight
+    Color color = Colors.blue,
+
+    ///Opacity of the highlight
+    double opacity = 0.3,
+  }) {
+    var colorHex = color.toHex();
+    var opacityString = opacity.toString();
+    checkEpubLoaded();
+    webViewController?.evaluateJavascript(
+        source: 'addHighlight("$cfi", "$colorHex", "$opacityString")');
+  }
+
+
   ///Adds a underline annotation
   addUnderline({required String cfi}) {
     checkEpubLoaded();
@@ -149,9 +168,14 @@ class EpubController {
   }
 
   ///Adjust font size in epub viewer
-  setFontSize({required double fontSize}) async {
+  setFontSize({required int fontSize, required String background, required String colorText}) async {
     await webViewController?.evaluateJavascript(
-        source: 'setFontSize("$fontSize")');
+        source: 'setFontSize("$fontSize", "$background", "$colorText")');
+  }
+
+  setTheme({required String background, required String colorText}) {
+    checkEpubLoaded();
+    webViewController?.evaluateJavascript(source: 'setBackgroundColor("$background", "$colorText")');
   }
 
   Completer<EpubTextExtractRes> pageTextCompleter =

@@ -60,15 +60,15 @@
     // var displaySettings= (params && params.get("displaySettings")) ? params.get("displaySettings") : undefined;
     var displaySettings= (params && params.get("displaySettings")) ? params.get("displaySettings") : undefined;
 
-   
-
     //loading epub
     var book = ePub();
     var rendition;
     var displayed;
     var chapters = []
 
-    
+    if(displaySettings){
+      displaySettings = JSON.parse(displaySettings)
+    }
 
     function loadBook(data, cfi, manager, flow, spread, snap,allowScriptedContent,direction, useCustomSwipe){
       var viewportHeight = window.innerHeight;
@@ -252,7 +252,7 @@
          rendition.annotations.remove(cfiString, "highlight");
     }
 
-    function setBackgroundColor(colorBackground, colorText){
+    function setBackgroundColor(fontSize, colorBackground, colorText){
       rendition.themes.default({
             body: {
               "background-color": `${colorBackground}`,
@@ -272,7 +272,7 @@
             },
             p: {  // Estilo para párrafos
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             h1: {  // Estilo para encabezados de nivel 1
               "color": `${colorText} !important`,
@@ -306,30 +306,30 @@
             },
             code: {  // Estilo para texto en formato de código
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             pre: {  // Estilo para bloques de código preformateado
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
              ul: {  // Estilo para listas desordenadas
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             ol: {  // Estilo para listas ordenadas
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             li: {  // Estilo para elementos de lista
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
       });
     }
+
 
 
     function setFontSize(fontSize, colorBackground, colorText){
-      displaySettings.fontSize = fontSize;
       rendition.themes.default({
             body: {
               "background-color": `${colorBackground}`,
@@ -349,7 +349,7 @@
             },
             p: {  // Estilo para párrafos
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px`
             },
             h1: {  // Estilo para encabezados de nivel 1
               "color": `${colorText} !important`,
@@ -383,27 +383,26 @@
             },
             code: {  // Estilo para texto en formato de código
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             pre: {  // Estilo para bloques de código preformateado
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
              ul: {  // Estilo para listas desordenadas
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             ol: {  // Estilo para listas ordenadas
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
             li: {  // Estilo para elementos de lista
               "color": `${colorText} !important`,
-              "font-size":`${displaySettings.fontSize}px !important`
+              "font-size":`${fontSize}px !important`
             },
       });
     }
-
 
     function removeUnderLine(cfiString){
          rendition.annotations.remove(cfiString, "underline");
@@ -425,14 +424,6 @@
       ).then(results => Promise.resolve([].concat.apply([], results)));
     };
 
-    function setFontSize(fontSize){
-      rendition.themes.default({
-        p: {
-        // "margin": '10px',
-        "font-size":`${fontSize}px`
-      }
-      });
-    }
 
     function setSpread(spread){
       rendition.spread(spread);
@@ -444,15 +435,6 @@
 
     function setManager(manager){
       rendition.manager(manager);
-    }
-
-    function setFontSize(fontSize){
-      rendition.themes.default({
-        p: {
-        // "margin": '10px',
-        "font-size":`${fontSize}px`
-        }
-      });
     }
 
     //get current page text

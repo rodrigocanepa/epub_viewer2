@@ -58,7 +58,8 @@
     var accessToken = (params && params.get("accessToken")) ? params.get("accessToken") : undefined;
     // var cfi = (params && params.get("cfi")) ? params.get("cfi") : undefined;
     // var displaySettings= (params && params.get("displaySettings")) ? params.get("displaySettings") : undefined;
-    
+    var displaySettings= (params && params.get("displaySettings")) ? params.get("displaySettings") : undefined;
+
    
 
     //loading epub
@@ -250,6 +251,159 @@
     function removeHighLight(cfiString){
          rendition.annotations.remove(cfiString, "highlight");
     }
+
+    function setBackgroundColor(colorBackground, colorText){
+      rendition.themes.default({
+            body: {
+              "background-color": `${colorBackground}`,
+              "color": `${colorText} !important`,
+            },
+            a: {  // Estilo para los hipervínculos
+              "color": `${colorText} !important`,
+            },
+            table: {  // Estilo para las tablas
+              "color": `${colorText} !important`,
+            },
+            td: {  // Estilo para las celdas de tabla
+              "color": `${colorText} !important`,
+            },
+            th: {  // Estilo para los encabezados de tabla
+              "color": `${colorText} !important`,
+            },
+            p: {  // Estilo para párrafos
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            h1: {  // Estilo para encabezados de nivel 1
+              "color": `${colorText} !important`,
+            },
+            h2: {  // Estilo para encabezados de nivel 2
+              "color": `${colorText} !important`,
+            },
+            h3: {  // Estilo para encabezados de nivel 3
+              "color": `${colorText} !important`,
+            },
+            h4: {  // Estilo para encabezados de nivel 4
+              "color": `${colorText} !important`,
+            },
+            h5: {  // Estilo para encabezados de nivel 5
+              "color": `${colorText} !important`,
+            },
+            h6: {  // Estilo para encabezados de nivel 6
+              "color": `${colorText} !important`,
+            },
+            span: {  // Estilo para elementos en línea
+              "color": `${colorText} !important`,
+            },
+            div: {  // Estilo para divisiones
+              "color": `${colorText} !important`,
+            },
+            em: {  // Estilo para texto enfatizado
+              "color": `${colorText} !important`,
+            },
+            strong: {  // Estilo para texto en negrita
+              "color": `${colorText} !important`,
+            },
+            code: {  // Estilo para texto en formato de código
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            pre: {  // Estilo para bloques de código preformateado
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+             ul: {  // Estilo para listas desordenadas
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            ol: {  // Estilo para listas ordenadas
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            li: {  // Estilo para elementos de lista
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+      });
+    }
+
+
+    function setFontSize(fontSize, colorBackground, colorText){
+      displaySettings.fontSize = fontSize;
+      rendition.themes.default({
+            body: {
+              "background-color": `${colorBackground}`,
+              "color": `${colorText} !important`,
+            },
+            a: {  // Estilo para los hipervínculos
+              "color": `${colorText} !important`,
+            },
+            table: {  // Estilo para las tablas
+              "color": `${colorText} !important`,
+            },
+            td: {  // Estilo para las celdas de tabla
+              "color": `${colorText} !important`,
+            },
+            th: {  // Estilo para los encabezados de tabla
+              "color": `${colorText} !important`,
+            },
+            p: {  // Estilo para párrafos
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            h1: {  // Estilo para encabezados de nivel 1
+              "color": `${colorText} !important`,
+            },
+            h2: {  // Estilo para encabezados de nivel 2
+              "color": `${colorText} !important`,
+            },
+            h3: {  // Estilo para encabezados de nivel 3
+              "color": `${colorText} !important`,
+            },
+            h4: {  // Estilo para encabezados de nivel 4
+              "color": `${colorText} !important`,
+            },
+            h5: {  // Estilo para encabezados de nivel 5
+              "color": `${colorText} !important`,
+            },
+            h6: {  // Estilo para encabezados de nivel 6
+              "color": `${colorText} !important`,
+            },
+            span: {  // Estilo para elementos en línea
+              "color": `${colorText} !important`,
+            },
+            div: {  // Estilo para divisiones
+              "color": `${colorText} !important`,
+            },
+            em: {  // Estilo para texto enfatizado
+              "color": `${colorText} !important`,
+            },
+            strong: {  // Estilo para texto en negrita
+              "color": `${colorText} !important`,
+            },
+            code: {  // Estilo para texto en formato de código
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            pre: {  // Estilo para bloques de código preformateado
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+             ul: {  // Estilo para listas desordenadas
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            ol: {  // Estilo para listas ordenadas
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+            li: {  // Estilo para elementos de lista
+              "color": `${colorText} !important`,
+              "font-size":`${displaySettings.fontSize}px !important`
+            },
+      });
+    }
+
 
     function removeUnderLine(cfiString){
          rendition.annotations.remove(cfiString, "underline");

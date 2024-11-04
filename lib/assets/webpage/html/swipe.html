@@ -58,17 +58,12 @@
     var accessToken = (params && params.get("accessToken")) ? params.get("accessToken") : undefined;
     // var cfi = (params && params.get("cfi")) ? params.get("cfi") : undefined;
     // var displaySettings= (params && params.get("displaySettings")) ? params.get("displaySettings") : undefined;
-    var displaySettings= (params && params.get("displaySettings")) ? params.get("displaySettings") : undefined;
 
     //loading epub
     var book = ePub();
     var rendition;
     var displayed;
     var chapters = []
-
-    if(displaySettings){
-      displaySettings = JSON.parse(displaySettings)
-    }
 
     function loadBook(data, cfi, manager, flow, spread, snap,allowScriptedContent,direction, useCustomSwipe){
       var viewportHeight = window.innerHeight;
